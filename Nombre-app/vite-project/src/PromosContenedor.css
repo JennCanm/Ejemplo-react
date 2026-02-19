@@ -1,0 +1,183 @@
+.promos-contenedor{
+  max-width: 980px;
+  margin: 24px auto;
+  padding: 18px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.45));
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.promos-contenedor h2{
+  margin: 0;
+  font-size: 1.25rem;
+  color: #222;
+}
+
+.promos-contenedor p{
+  margin: 0;
+  color: #444;
+  font-weight: 600;
+}
+
+/* Ajuste para el mapa dentro del contenedor */
+.promos-contenedor > div {
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Responsive */
+@media (min-width: 768px){
+  .promos-contenedor{
+    padding: 24px;
+    gap: 16px;
+  }
+}
+
+.promos-list{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  width: 100%;
+}
+
+.promo-card{
+  display: flex;
+  gap: 12px;
+  align-items: stretch;
+  background: rgba(255,255,255,0.9);
+  padding: 12px;
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+}
+
+.promo-info{
+  flex: 1 1 40%;
+}
+
+.promo-info h3{ margin: 0 0 6px 0; }
+.promo-text{ margin: 0; color: #333; font-weight: 600 }
+
+.promo-map{
+  flex: 1 1 60%;
+  min-width: 220px;
+  height: 200px;
+}
+
+@media (min-width: 900px){
+  .promos-list{ grid-template-columns: repeat(2, 1fr);} 
+}
+
+/* ---- Estilos añadidos por el usuario para sucursales y contacto ---- */
+.sucursales-container {
+  background: linear-gradient(to right, #dad4d9 15%, #cec8cd);
+  padding: 60px 40px;
+  text-align: center;
+}
+
+.sucursales-container h2 {
+  color: white;
+  font-size: 32px;
+  margin-bottom: 40px;
+}
+
+.sucursalesGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 300px);
+  gap: 40px;
+  justify-content: center;
+}
+
+.sucursalCard {
+  background-color: whitesmoke;
+  padding: 30px;
+  border: 3px solid rgb(248, 168, 231);
+  box-shadow: 10px 10px 0px rgb(248, 168, 231);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.sucursalCard:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(218, 24, 208, 0.4);
+}
+
+.sucursalCard h3 {
+  color: #da18d0;
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.sucursalCard p {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.sucursalCard span {
+  font-size: 14px;
+  color: #666;
+}
+
+
+
+.contacto-container {
+  background: linear-gradient(to right, #da18d0 15%, #eb9ae0);
+  padding: 80px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contacto-container h2 {
+  color: white;
+  font-size: 32px;
+  margin-bottom: 30px;
+}
+
+.contacto-form {
+  background-color: whitesmoke;
+  width: 400px;
+  padding: 40px;
+  border: 3px solid rgb(248, 168, 231);
+  box-shadow: 10px 10px 0px rgb(248, 168, 231);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contacto-form input,
+.contacto-form textarea {
+  padding: 12px;
+  border: 2px solid #da18d0;
+  font-size: 14px;
+  outline: none;
+}
+
+.contacto-form textarea {
+  resize: none;
+  height: 120px;
+}
+
+.contacto-form input:focus,
+.contacto-form textarea:focus {
+  border-color: #ff00ff;
+}
+
+.contacto-form button {
+  background-color: #da18d0;
+  color: white;
+  border: none;
+  padding: 14px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.contacto-form button:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(218, 24, 208, 0.5);
+}

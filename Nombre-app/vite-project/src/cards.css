@@ -1,0 +1,200 @@
+.main-container {
+    width: 100%;
+    min-height: 100vh;
+}
+
+.cardsDiv {
+    background: linear-gradient(to right, #da18d0 15%, #eb9ae0);
+    display: grid;
+    grid-template-columns: repeat(3, 300px); /* tamaño real de la card */
+    gap: 40px;
+    padding: 60px 0;
+    justify-content: center; /* centra TODO el grid */
+    min-height: 100vh;
+    align-content: center;
+    width: 100%;
+    box-sizing: border-box;
+
+}
+.card {
+    background-color: whitesmoke;
+    width: 300px;
+    height: 500px;
+    padding: 15px;
+    border: 3px solid rgb(248, 168, 231);
+    box-shadow: 10px 10px 0px rgb(248, 168, 231); 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.2s;
+}
+
+
+.card:hover {
+    transform: translateY(-12px) scale(1.03);
+    box-shadow: 0 20px 40px rgba(218, 24, 208, 0.4);
+}
+
+
+.card img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border: 2px solid black;
+    margin-bottom: 15px;
+}
+
+.card h1 {
+    font-family: 'Arial', sans-serif;
+    color: #da18d0;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.card a {
+    font-family: 'Arial', sans-serif;
+    color: #da18d0;
+    margin-bottom: 10px;
+}
+
+.card p {
+    font-size: 14px;
+    color: #333;
+    text-shadow: 1px 1px 1px #000000;
+}
+.main-container h2 {
+    color: #da18d0;
+}
+
+.artistsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 300px); 
+  gap: 40px;
+  padding: 60px 0; 
+  justify-content: center;
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(to right, #da18d0 15%, #eb9ae0);
+  align-content: center;
+  box-sizing: border-box;
+}
+
+
+.sucursales-container {
+    background: linear-gradient(to right, #dad4d9 15%, #cec8cd);
+    padding: 60px 40px;
+    text-align: center;
+    min-height: 100vh;
+}
+
+.sucursales-container h2 {
+    color: white;
+    font-size: 32px;
+    margin-bottom: 40px;
+}
+
+.sucursalesGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 300px);
+    gap: 40px;
+    justify-content: center;
+    width: 100%;
+    box-sizing: border-box;
+    min-height: 100vh;
+    align-content: center;
+}
+
+.sucursalCard {
+    background-color: whitesmoke;
+    padding: 30px;
+    border: 3px solid rgb(248, 168, 231);
+    box-shadow: 10px 10px 0px rgb(248, 168, 231);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.sucursalCard:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(218, 24, 208, 0.4);
+}
+
+.sucursalCard h3 {
+    color: #da18d0;
+    font-size: 22px;
+    margin: 0;
+}
+
+.sucursalCard p {
+    font-size: 16px;
+    color: #333;
+    margin: 0;
+}
+
+.sucursalCard span {
+    font-size: 14px;
+    color: #666;
+}
+
+
+
+.contacto-container {
+    background: linear-gradient(to right, #da18d0 15%, #eb9ae0);
+    padding: 80px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.contacto-container h2 {
+    color: white;
+    font-size: 32px;
+    margin-bottom: 30px;
+}
+
+.contacto-form {
+    background-color: whitesmoke;
+    width: 400px;
+    padding: 40px;
+    border: 3px solid rgb(248, 168, 231);
+    box-shadow: 10px 10px 0px rgb(248, 168, 231);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.contacto-form input,
+.contacto-form textarea {
+    padding: 12px;
+    border: 2px solid #da18d0;
+    font-size: 14px;
+    outline: none;
+}
+
+.contacto-form textarea {
+    resize: none;
+    height: 120px;
+}
+
+.contacto-form input:focus,
+.contacto-form textarea:focus {
+    border-color: #ff00ff;
+}
+
+.contacto-form button {
+    background-color: #da18d0;
+    color: white;
+    border: none;
+    padding: 14px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.contacto-form button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(218, 24, 208, 0.5);
+}
