@@ -17,6 +17,7 @@ import eliminarIcon from './assets/Usuarios/eliminar.png';
 import PromosContenedor from './PromosContenedor'
 import MapaGeolocalizacion from './MapaGeolocalizacion';
 import Mapa from './Mapa';
+import RegistrarProductos from './RegistrarProductos.jsx';
 
 
 function Target(props){
@@ -81,6 +82,7 @@ function Productos() {
     } 
     return (
         <div>
+             <RegistrarProductos />
             <main className='classmain'>
                 <header>
                     <h1>Nuestro catalogo</h1>
@@ -95,6 +97,7 @@ function Productos() {
                     </article>
                 ))}
             </main>
+           
         </div>
       
     );
@@ -343,6 +346,18 @@ function Usuarios(){
 }
 
 
+function Carrito(){
+    return(
+        <div>
+            <h2>Carrito de Compras</h2>
+            <p>Aquí podrás ver los productos que has agregado a tu carrito de compras. Podrás revisar los detalles de cada producto, modificar las cantidades o eliminar productos antes de proceder al pago.</p>
+
+        </div>
+    );
+    
+}
+
+
 function ContenedorCards({ vista }){
     
     const vistas = {
@@ -352,7 +367,8 @@ function ContenedorCards({ vista }){
         'Galeria': <Galeria/>,
         'Sucursales': <Sucursales/>,
         'Contacto': <Contacto/>,
-        'Usuarios': <Usuarios/>
+        'Usuarios': <Usuarios/>,
+        'Carrito': <Carrito/>         
     };
 
     return(

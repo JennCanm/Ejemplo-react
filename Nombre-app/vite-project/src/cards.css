@@ -198,3 +198,82 @@
     transform: translateY(-5px);
     box-shadow: 0 10px 20px rgba(218, 24, 208, 0.5);
 }
+
+/* Estilos para la sección Productos */
+.classmain {
+      background: linear-gradient(to right, #da18d0 15%, #eb9ae0);
+    display: grid;
+    grid-template-columns: repeat(3, 300px); /* tamaño real de la card */
+    gap: 40px;
+    padding: 60px 0;
+    justify-content: center; /* centra TODO el grid */
+    min-height: 100vh;
+    align-content: center;
+    width: 100%;
+    box-sizing: border-box;
+
+}
+
+.classmain header {
+    grid-column: 1 / -1;
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.classmain header h1 {
+    color: #da18d0;
+    font-size: 28px;
+    margin: 0 0 6px;
+}
+
+
+/* Hacer que los artículos de Productos luzcan como las cards de Galeria */
+.classArticle {
+    background-color: whitesmoke;
+    width: 300px;
+    height: 500px;
+    padding: 15px;
+    border: 3px solid rgb(248, 168, 231);
+    box-shadow: 10px 10px 0px rgb(248, 168, 231);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.2s;
+}
+
+.classArticle:hover {
+    transform: translateY(-12px) scale(1.03);
+    box-shadow: 0 20px 40px rgba(218, 24, 208, 0.4);
+}
+
+.classArticle p {
+    margin: 6px 0;
+    color: #333;
+    font-size: 14px;
+}
+
+.classImg {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border: 2px solid black;
+    margin-bottom: 15px;
+}
+
+.classArticle .price {
+    font-weight: 700;
+    color: #da18d0;
+    font-size: 18px;
+}
+
+@media (max-width: 600px) {
+    .classmain {
+        padding: 24px 12px;
+        gap: 16px;
+    }
+
+    .classImg {
+        height: 150px;
+    }
+}
