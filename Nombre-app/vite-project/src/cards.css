@@ -1,21 +1,22 @@
 .main-container {
     width: 100%;
     min-height: 100vh;
+    background: #ffffff;
 }
 
 .cardsDiv {
-    background: linear-gradient(to right, #da18d0 15%, #eb9ae0);
+    background: #f5edf4; 
     display: grid;
-    grid-template-columns: repeat(3, 300px); /* tamaño real de la card */
+    grid-template-columns: repeat(3, 300px);
     gap: 40px;
     padding: 60px 0;
-    justify-content: center; /* centra TODO el grid */
+    justify-content: center;
     min-height: 100vh;
     align-content: center;
     width: 100%;
     box-sizing: border-box;
-
 }
+
 .card {
     background-color: whitesmoke;
     width: 300px;
@@ -30,12 +31,10 @@
     transition: transform 0.2s;
 }
 
-
 .card:hover {
     transform: translateY(-12px) scale(1.03);
     box-shadow: 0 20px 40px rgba(218, 24, 208, 0.4);
 }
-
 
 .card img {
     width: 100%;
@@ -63,6 +62,7 @@
     color: #333;
     text-shadow: 1px 1px 1px #000000;
 }
+
 .main-container h2 {
     color: #da18d0;
 }
@@ -75,14 +75,13 @@
   justify-content: center;
   width: 100%;
   min-height: 100vh;
-  background: linear-gradient(to right, #da18d0 15%, #eb9ae0);
+  background: #ffffff; 
   align-content: center;
   box-sizing: border-box;
 }
 
-
 .sucursales-container {
-    background: linear-gradient(to right, #dad4d9 15%, #cec8cd);
+    background: #ffffff; 
     padding: 60px 40px;
     text-align: center;
     min-height: 100vh;
@@ -138,15 +137,14 @@
     color: #666;
 }
 
-
-
 .contacto-container {
-    background: linear-gradient(to right, #da18d0 15%, #eb9ae0);
-    padding: 80px 40px;
+    background: linear-gradient(to right, #da18d0 15%, #eb9ae0); 
+    min-height: 100vh;
+    padding-top: 140px;  
+    padding-bottom: 80px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-height: 100vh;
 }
 
 .contacto-container h2 {
@@ -185,7 +183,7 @@
 }
 
 .contacto-form button {
-    background-color: #da18d0;
+    background-color: #d21ad0;
     color: white;
     border: none;
     padding: 14px;
@@ -199,39 +197,36 @@
     box-shadow: 0 10px 20px rgba(218, 24, 208, 0.5);
 }
 
-/* Estilos para la sección Productos */
 .classmain {
-      background: linear-gradient(to right, #da18d0 15%, #eb9ae0);
+    background: #ffffff; 
     display: grid;
-    grid-template-columns: repeat(3, 300px); /* tamaño real de la card */
+    grid-template-columns: repeat(3, 300px);
     gap: 40px;
     padding: 60px 0;
-    justify-content: center; /* centra TODO el grid */
+    justify-content: center;
     min-height: 100vh;
-    align-content: center;
+    align-content: start;
     width: 100%;
     box-sizing: border-box;
-
 }
 
 .classmain header {
     grid-column: 1 / -1;
     text-align: center;
-    margin-bottom: 8px;
+    margin-bottom: 40px;
 }
 
-.classmain header h1 {
-    color: #da18d0;
-    font-size: 28px;
-    margin: 0 0 6px;
+.classmain h1 {
+    font-family: 'Arial', sans-serif;
+    color: white;
+    font-size: 40px;
+    text-shadow: 3px 3px 0px #da18d0;
 }
 
-
-/* Hacer que los artículos de Productos luzcan como las cards de Galeria */
 .classArticle {
     background-color: whitesmoke;
     width: 300px;
-    height: 500px;
+    height: 520px;
     padding: 15px;
     border: 3px solid rgb(248, 168, 231);
     box-shadow: 10px 10px 0px rgb(248, 168, 231);
@@ -240,6 +235,7 @@
     align-items: center;
     text-align: center;
     transition: transform 0.2s;
+    overflow: hidden;
 }
 
 .classArticle:hover {
@@ -247,33 +243,103 @@
     box-shadow: 0 20px 40px rgba(218, 24, 208, 0.4);
 }
 
-.classArticle p {
-    margin: 6px 0;
-    color: #333;
+.classArticle p:first-child {
+    font-weight: bold;
+    color: #faf1f9;
+    margin-bottom: 10px;
+}
+
+.classArticle p:nth-child(2) {
     font-size: 14px;
+    height: 60px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.classArticle p:last-child {
+    font-size: 20px;
+    font-weight: bold;
+    color: black;
+    margin-top: auto;
 }
 
 .classImg {
     width: 100%;
-    height: 300px;
-    object-fit: cover;
+    height: 250px;
+    object-fit: contain;
     border: 2px solid black;
     margin-bottom: 15px;
+    background-color: white;
+    padding: 10px;
 }
 
-.classArticle .price {
-    font-weight: 700;
-    color: #da18d0;
-    font-size: 18px;
+
+
+
+.usuarios-container {
+  min-height: 100vh;
+  padding: 140px 40px 80px;
+  background: #ffffff;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-@media (max-width: 600px) {
-    .classmain {
-        padding: 24px 12px;
-        gap: 16px;
-    }
+.usuarios-container h1 {
+  color: #ffffff;
+  font-size: 40px;
+  margin-bottom: 40px;
+  text-shadow: 3px 3px 0px #da18d0;
+  text-align: center;
+}
 
-    .classImg {
-        height: 150px;
-    }
+.usuarios-table {
+  width: 90%;
+  max-width: 1100px;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: whitesmoke;
+  border: 3px solid rgb(248, 168, 231);
+  box-shadow: 10px 10px 0px rgb(248, 168, 231);
+  overflow: hidden;
+}
+
+.usuarios-table thead th {
+  background: #da18d0;
+  color: white;
+  padding: 14px 10px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.usuarios-table tbody tr:nth-child(even) {
+  background: #fde7fb;
+}
+
+.usuarios-table tbody tr:hover {
+  background: #f7c9f2;
+  transform: scale(1.01);
+}
+
+.usuarios-table td {
+  padding: 12px 10px;
+  text-align: center;
+  font-size: 13px;
+  color: #333;
+  border-bottom: 1px solid #f2b3ea;
+}
+
+.usuarios-table button {
+  background: #ffffff;
+  border: 2px solid #da18d0;
+  padding: 6px;
+  border-radius: 8px;
+  cursor: pointer
+}
+
+.usuarios-table button:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 6px 14px rgba(218, 24, 208, 0.5);
+  background: #ffe3fb;
 }

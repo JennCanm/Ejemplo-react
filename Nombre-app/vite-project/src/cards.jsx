@@ -61,46 +61,46 @@ function AcercaDe(){
 
 
 function Productos() {
-    const [productos, setProductos] = useState([]);
-    const[loading, setLoading] = useState(true);
+  const [productos, setProductos] = useState([]);
+const [loading, setLoading] = useState(true);
 
-    useEffect(()=>{
-        const obtenerProductos = async () => {
-            try{
-                const response = await api.get("products");
-                setProductos(response.data);
-            } catch (error){
-                console.error('Error al obtener los productos:', error);
-            } finally{
-                setLoading(false);
-            }
-        };
-        obtenerProductos();
-    }, [])
-    if (loading) {
-        return <p>Cargando productos...</p>
-    } 
-    return (
-        <div>
-             <RegistrarProductos />
-            <main className='classmain'>
-                <header>
-                    <h1>Nuestro catalogo</h1>
-                </header>
-                {productos.map((producto)=>(
-                    <article key={producto.id} className='classArticle'>
-                        <p>{producto.title}</p>
-                        <p>{producto.description}</p>
-                        <img src={producto.image} alt={producto.title} className='classImg'/>
-                        <p>${producto.price}</p>
+useEffect(() => {
+    const obtenerProductos = async () => {
+        try {
+            const response = await api.get("products");
+            setProductos(response.data);
+        } catch (error) {
+            console.error('Error al obtener los productos:', error);
+        } finally {
+            setLoading(false);
+        }
+    };
+    obtenerProductos();
+}, []);
 
-                    </article>
-                ))}
-            </main>
-           
-        </div>
-      
-    );
+if (loading) {
+    return <p>Cargando productos...</p>
+}
+
+return (
+    <div>
+        <RegistrarProductos />
+        <main className='classmain'>
+            <header>
+                <h1>Nuestro catalogo</h1>
+            </header>
+
+            {productos.map((producto) => (
+                <article key={producto.id} className='classArticle'>
+                    <p>{producto.title}</p>
+                    <p>{producto.description}</p>
+                    <img src={producto.image} alt={producto.title} className='classImg' />
+                    <p>${producto.price}</p>
+                </article>
+            ))}
+        </main>
+    </div>
+);
 }
 
 
@@ -297,9 +297,9 @@ function Usuarios(){
     }
     
     return (
-        <div>
+        <div className="usuarios-container">
             <h1>Gestión de Usuarios</h1>
-            <table>
+            <table className="usuarios-table">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -347,11 +347,48 @@ function Usuarios(){
 
 
 function Carrito(){
+    const [ordenes, setOrdenes] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const obtenerOrdenes = async () => {
+            try {
+                const response = await api.get("carts");
+                setOrdenes(response.data);
+            } catch (error) {
+                console.error('Error al obtener las órdenes:', error);
+            } finally {
+                setLoading(false);
+            }
+        };
+        obtenerOrdenes();
+    }, []);
+
+    if (loading) {
+        return <p>Cargando Pedidos...</p>
+    }
+
     return(
         <div>
             <h2>Carrito de Compras</h2>
-            <p>Aquí podrás ver los productos que has agregado a tu carrito de compras. Podrás revisar los detalles de cada producto, modificar las cantidades o eliminar productos antes de proceder al pago.</p>
+            <p>Aquí podrás ver loa pedidos y sus productos.</p>
 
+            {ordenes.map((orden) => (
+                <div key={orden.id} className='orden-container'>
+                    <h3>Pedido #{orden.id}</h3>
+                    <p><strong>Usuario:</strong> {orden.userId}</p>
+                    <p><strong>Fecha:</strong> {new Date(orden.date).toLocaleDateString()}</p>
+                    
+                    <h4>Productos:</h4>
+                    <ul>
+                        {orden.products.map((producto) => (
+                            <li key={producto.productId}>
+                                Producto ID: {producto.productId} - Cantidad: {producto.quantity}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            ))}
         </div>
     );
     
