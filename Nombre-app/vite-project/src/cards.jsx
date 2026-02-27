@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types'; 
 import { useEffect, useState } from "react";
 import './cards.css';
+
 import api from './Services/api';
 
 import imgCard1 from './assets/harry.png';
@@ -14,10 +15,13 @@ import Card5 from './assets/dua.png';
 import Card6 from './assets/lana.png';
 import editarIcon from './assets/Usuarios/editar.png';
 import eliminarIcon from './assets/Usuarios/eliminar.png';
+import xIcon from './assets/x.png';
 import PromosContenedor from './PromosContenedor'
 import MapaGeolocalizacion from './MapaGeolocalizacion';
 import Mapa from './Mapa';
 import RegistrarProductos from './RegistrarProductos.jsx';
+import RegistrarUsuarios from './RegistrarUsuarios.jsx';
+import RegistrarCarrito from './RegistrarCarrito.jsx';
 
 
 function Target(props){
@@ -205,8 +209,9 @@ function Sucursales(){
 function Contacto(){
    const [formData, setFormData] = useState({
         nombre: "",
-        email: "",
-        mensaje: ""
+    telefono: "",
+    email: "",
+    mensaje: ""
     });
 
     const handleChange = (e) => {
@@ -220,10 +225,11 @@ function Contacto(){
         e.preventDefault();
         console.log("Datos guardados:", formData);
 
-        alert("Mensaje enviado correctamente ✨");
+        alert("Mensaje enviado correctamente ");
 
         setFormData({
             nombre: "",
+            telefono: "",
             email: "",
             mensaje: ""
         });
@@ -241,6 +247,14 @@ function Contacto(){
                     value={formData.nombre}
                     onChange={handleChange}
                     required
+                />
+
+                <input
+                    type="tel"
+                    name="telefono"
+                    placeholder="Tu teléfono"
+                    value={formData.telefono}
+                    onChange={handleChange}
                 />
 
                 <input
@@ -298,6 +312,7 @@ function Usuarios(){
     
     return (
         <div className="usuarios-container">
+             <RegistrarUsuarios/>
             <h1>Gestión de Usuarios</h1>
             <table className="usuarios-table">
                 <thead>
@@ -341,14 +356,22 @@ function Usuarios(){
                     ))}
                 </tbody>
             </table>
+           
         </div>
     );
+    
 }
 
 
 function Carrito(){
     const [ordenes, setOrdenes] = useState([]);
     const [loading, setLoading] = useState(true);
+
+   
+    const handleRemove = (ordenId, productId) => {
+        console.log(`Quitar producto ${productId} del pedido ${ordenId}`);
+        
+    };
 
     useEffect(() => {
         const obtenerOrdenes = async () => {
@@ -369,26 +392,36 @@ function Carrito(){
     }
 
     return(
-        <div>
+        <div className="carrito-container">
             <h2>Carrito de Compras</h2>
-            <p>Aquí podrás ver loa pedidos y sus productos.</p>
 
-            {ordenes.map((orden) => (
-                <div key={orden.id} className='orden-container'>
-                    <h3>Pedido #{orden.id}</h3>
-                    <p><strong>Usuario:</strong> {orden.userId}</p>
-                    <p><strong>Fecha:</strong> {new Date(orden.date).toLocaleDateString()}</p>
-                    
-                    <h4>Productos:</h4>
-                    <ul>
-                        {orden.products.map((producto) => (
-                            <li key={producto.productId}>
-                                Producto ID: {producto.productId} - Cantidad: {producto.quantity}
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-            ))}
+            <div className="carrito-grid">
+                
+                {ordenes.map((orden) => (
+                    <div key={orden.id} className='orden-card'>
+                        <h3>Pedido #{orden.id}</h3>
+                        <p>Usuario: {orden.userId}</p>
+                        <p>Fecha: {new Date(orden.date).toLocaleDateString()}</p>
+                        
+                        <h4>Productos:</h4>
+                        <ul className="productos-list">
+                            {orden.products.map((producto) => (
+                                <li key={producto.productId}>
+                                    <span>Producto ID: {producto.productId} - Cantidad: {producto.quantity}</span>
+                                    <button
+                                        className="btn-eliminar"
+                                        onClick={() => handleRemove(orden.id, producto.productId)}
+                                        title="Eliminar producto"
+                                    >
+                                        <img src={xIcon} alt="Eliminar" />
+                                    </button>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                ))}
+            </div>
+            <RegistrarCarrito/>
         </div>
     );
     

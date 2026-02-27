@@ -10,11 +10,11 @@ function RegistrarProductos() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const nuevoProducto = {title, price, description, category, image};
+        const AgregarCarrito = {title, price, description, category, image};
         try{
-            const respuesta= await api.post('/products', nuevoProducto)
+            const respuesta= await api.post('/products', AgregarCarrito)
             console.log(respuesta.data);
-            alert('¡Producto guardado con exito!');
+            alert('¡Producto guardado en el carrito!');
         }
         catch(error){
             console.error('Error al guardar el producto:', error);
@@ -24,7 +24,7 @@ function RegistrarProductos() {
     }
     return(
         <div className="registrar-container">
-            <h2>Registrar Producto</h2>
+            <h2>Agregar al Carrito</h2>
             <form className="registrar-form" onSubmit={handleSubmit}>
                 <input 
                 type="text" 
@@ -56,7 +56,7 @@ function RegistrarProductos() {
                 value={image}       
                 onChange={(e) => setImage(e.target.value)}
                 />
-                <button type="submit">Guardar Producto</button>
+                <button type="submit">Agregar al Carrito</button>
 
             </form>
         </div>

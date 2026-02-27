@@ -1,0 +1,76 @@
+.registrar-container {
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 48px 20px;
+  box-sizing: border-box;
+  background: linear-gradient(180deg, rgba(234, 199, 235, 0.08), rgba(234,199,235,0.03));
+}
+
+.registrar-container h2 {
+  color: #da18d0;
+  font-size: 28px;
+  margin: 0 0 18px;
+  text-align: center;
+}
+
+.registrar-form {
+  width: 100%;
+  max-width: 520px;
+  background-color: whitesmoke;
+  padding: 28px;
+  border: 3px solid rgb(248, 168, 231);
+  box-shadow: 10px 10px 0px rgb(248, 168, 231);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  box-sizing: border-box;
+  border-radius: 8px;
+}
+
+.registrar-form input[type="text"],
+.registrar-form input[type="number"],
+.registrar-form input[type="email"],
+.registrar-form textarea {
+  padding: 12px 14px;
+  border: 2px solid #da18d0;
+  border-radius: 6px;
+  font-size: 14px;
+  outline: none;
+  background: #fff;
+}
+
+.registrar-form input:focus,
+.registrar-form textarea:focus {
+  border-color: #ff00ff;
+  box-shadow: 0 6px 18px rgba(218,24,208,0.08);
+}
+
+.registrar-form button[type="submit"] {
+  background-color: #da18d0;
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: transform 0.18s, box-shadow 0.18s;
+  border-radius: 6px;
+}
+
+.registrar-form button[type="submit"]:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 30px rgba(218,24,208,0.2);
+}
+
+@media (max-width: 520px) {
+  .registrar-form {
+    padding: 20px;
+    gap: 12px;
+  }
+
+  .registrar-container {
+    padding: 28px 12px;
+  }
+}

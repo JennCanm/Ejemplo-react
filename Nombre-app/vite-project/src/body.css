@@ -23,7 +23,7 @@
 /* Ajustes de texto para que se vean bien DENTRO de la caja blanca */
 .glassContainer h1 {
     font-family: 'Arial', sans-serif;
-    color: #333; /* Cambié a oscuro porque el fondo de la caja es claro */
+    color: #da18d0; /* Color de galería */
     font-size: 32px;
     margin: 0;
     /* Ya no necesitas tanto text-shadow si usas la caja, pero si te gusta déjalo */
