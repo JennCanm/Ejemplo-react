@@ -1,13 +1,14 @@
-import PropTypes from 'prop-types'; 
+import PropTypes from 'prop-types';
 import { useEffect, useState } from "react";
 import './cards.css';
 
 import api from './Services/api';
+import { useAuth } from './authContext';
 
 import imgCard1 from './assets/harry.png';
 import imgCard2 from './assets/ssong.png';
-import imgCard3 from './assets/jos.png'; 
-import Card1 from './assets/selena.png'    
+import imgCard3 from './assets/jos.png';
+import Card1 from './assets/selena.png'
 import Card2 from './assets/taylor.png';
 import Card3 from './assets/sabrina.png';
 import Card4 from './assets/bad.png';
@@ -24,8 +25,8 @@ import RegistrarUsuarios from './RegistrarUsuarios.jsx';
 import RegistrarCarrito from './RegistrarCarrito.jsx';
 
 
-function Target(props){
-    return(
+function Target(props) {
+    return (
         <div className='card'>
             <img src={props.imagen} alt={props.name} />
             <h1>{props.name}</h1>
@@ -36,19 +37,19 @@ function Target(props){
     )
 }
 
-function Inicio(){
-    return( 
-    <div>
-         <h2>Bienvenido a la página de Inicio</h2>
-    <h1>Descubre un lugar donde la creatividad, el talento y la inspiración se unen.
-Nuestra página está diseñada para mostrar a personas increíbles, proyectos únicos y contenido que conecta contigo.
+function Inicio() {
+    return (
+        <div>
+            <h2>Bienvenido a la página de Inicio</h2>
+            <h1>Descubre un lugar donde la creatividad, el talento y la inspiración se unen.
+                Nuestra página está diseñada para mostrar a personas increíbles, proyectos únicos y contenido que conecta contigo.
 
-Explora nuestras secciones, conoce más sobre nosotros y disfruta de una experiencia visual pensada especialmente para ti.</h1>
-    </div>
+                Explora nuestras secciones, conoce más sobre nosotros y disfruta de una experiencia visual pensada especialmente para ti.</h1>
+        </div>
     );
 }
 
-function AcercaDe(){
+function AcercaDe() {
     return (
         <div>
             <h2>Acerca De Nosotros</h2>
@@ -65,103 +66,103 @@ function AcercaDe(){
 
 
 function Productos() {
-  const [productos, setProductos] = useState([]);
-const [loading, setLoading] = useState(true);
+    const [productos, setProductos] = useState([]);
+    const [loading, setLoading] = useState(true);
 
-useEffect(() => {
-    const obtenerProductos = async () => {
-        try {
-            const response = await api.get("products");
-            setProductos(response.data);
-        } catch (error) {
-            console.error('Error al obtener los productos:', error);
-        } finally {
-            setLoading(false);
-        }
-    };
-    obtenerProductos();
-}, []);
+    useEffect(() => {
+        const obtenerProductos = async () => {
+            try {
+                const response = await api.get("products");
+                setProductos(response.data);
+            } catch (error) {
+                console.error('Error al obtener los productos:', error);
+            } finally {
+                setLoading(false);
+            }
+        };
+        obtenerProductos();
+    }, []);
 
-if (loading) {
-    return <p>Cargando productos...</p>
-}
+    if (loading) {
+        return <p>Cargando productos...</p>
+    }
 
-return (
-    <div>
-        <RegistrarProductos />
-        <main className='classmain'>
-            <header>
-                <h1>Nuestro catalogo</h1>
-            </header>
+    return (
+        <div>
+            <RegistrarProductos />
+            <main className='classmain'>
+                <header>
+                    <h1>Nuestro catalogo</h1>
+                </header>
 
-            {productos.map((producto) => (
-                <article key={producto.id} className='classArticle'>
-                    <p>{producto.title}</p>
-                    <p>{producto.description}</p>
-                    <img src={producto.image} alt={producto.title} className='classImg' />
-                    <p>${producto.price}</p>
-                </article>
-            ))}
-        </main>
-    </div>
-);
-}
-
-
-function Galeria(){
-    return(
-        <div className='cardsDiv'> 
-            <Target 
-                name='Harry Styles' 
-                descripcion='Cantante de Inglaterra' 
-                imagen={imgCard1} 
-            />
-            <Target 
-                name='Song Kang' 
-                descripcion='Actor surCoreano' 
-                imagen={imgCard2} 
-            />
-            <Target 
-                name='Jos Canela' 
-                descripcion='Cantante e Integrante de cd9' 
-                imagen={imgCard3} 
-            />
-             <Target 
-                    name='Selena Gomez'
-                    descripcion='Cantante y actriz pop estadounidense'
-                    imagen={Card1}
-                />
-                <Target 
-                    name='Taylor Swift'
-                    descripcion='Cantante y compositora internacional'
-                    imagen={Card2}
-                />
-                <Target 
-                    name='Sabrina Carpenter'
-                    descripcion='Cantante y actriz del pop moderno'
-                    imagen={Card3}
-                />
-                <Target 
-                    name='Bad Bunny'
-                    descripcion='Artista urbano puertorriqueño'
-                    imagen={Card4}
-                />
-                <Target 
-                    name='Dua Lipa'
-                    descripcion='Cantante pop británica'
-                    imagen={Card5}
-                />
-                <Target 
-                    name='Lana Del Rey'
-                    descripcion='Cantante alternativa y compositora'
-                    imagen={Card6}
-                />
-            
+                {productos.map((producto) => (
+                    <article key={producto.id} className='classArticle'>
+                        <p>{producto.title}</p>
+                        <p>{producto.description}</p>
+                        <img src={producto.image} alt={producto.title} className='classImg' />
+                        <p>${producto.price}</p>
+                    </article>
+                ))}
+            </main>
         </div>
     );
 }
 
-function Sucursales(){
+
+function Galeria() {
+    return (
+        <div className='cardsDiv'>
+            <Target
+                name='Harry Styles'
+                descripcion='Cantante de Inglaterra'
+                imagen={imgCard1}
+            />
+            <Target
+                name='Song Kang'
+                descripcion='Actor surCoreano'
+                imagen={imgCard2}
+            />
+            <Target
+                name='Jos Canela'
+                descripcion='Cantante e Integrante de cd9'
+                imagen={imgCard3}
+            />
+            <Target
+                name='Selena Gomez'
+                descripcion='Cantante y actriz pop estadounidense'
+                imagen={Card1}
+            />
+            <Target
+                name='Taylor Swift'
+                descripcion='Cantante y compositora internacional'
+                imagen={Card2}
+            />
+            <Target
+                name='Sabrina Carpenter'
+                descripcion='Cantante y actriz del pop moderno'
+                imagen={Card3}
+            />
+            <Target
+                name='Bad Bunny'
+                descripcion='Artista urbano puertorriqueño'
+                imagen={Card4}
+            />
+            <Target
+                name='Dua Lipa'
+                descripcion='Cantante pop británica'
+                imagen={Card5}
+            />
+            <Target
+                name='Lana Del Rey'
+                descripcion='Cantante alternativa y compositora'
+                imagen={Card6}
+            />
+
+        </div>
+    );
+}
+
+function Sucursales() {
     const sucursales = [
         {
             id: 1,
@@ -185,7 +186,7 @@ function Sucursales(){
             promo: 'Hasta 30% en paquetes'
         }
     ]
-    
+
     return (
         <div className="sucursales-container">
             <h2>Nuestras Sucursales</h2>
@@ -201,17 +202,17 @@ function Sucursales(){
             </div>
 
             <MapaGeolocalizacion />
-            
+
         </div>
     );
 }
 
-function Contacto(){
-   const [formData, setFormData] = useState({
+function Contacto() {
+    const [formData, setFormData] = useState({
         nombre: "",
-    telefono: "",
-    email: "",
-    mensaje: ""
+        telefono: "",
+        email: "",
+        mensaje: ""
     });
 
     const handleChange = (e) => {
@@ -280,39 +281,39 @@ function Contacto(){
     );
 }
 
-function Usuarios(){
+function Usuarios() {
     const [usuarios, setUsuarios] = useState([]);
     const [loading, setLoading] = useState(true);
 
-    useEffect(()=>{
+    useEffect(() => {
         const obtenerUsuarios = async () => {
-            try{
+            try {
                 const response = await api.get("users");
                 setUsuarios(response.data);
-            } catch (error){
+            } catch (error) {
                 console.error('Error al obtener los usuarios:', error);
-            } finally{
+            } finally {
                 setLoading(false);
             }
         };
         obtenerUsuarios();
     }, [])
-    
+
     if (loading) {
         return <p>Cargando usuarios...</p>
     }
-    
+
     const handleEditar = (usuario) => {
         console.log('Editar usuario:', usuario);
     }
-    
+
     const handleEliminar = (id) => {
         console.log('Eliminar usuario con ID:', id);
     }
-    
+
     return (
         <div className="usuarios-container">
-             <RegistrarUsuarios/>
+            <RegistrarUsuarios />
             <h1>Gestión de Usuarios</h1>
             <table className="usuarios-table">
                 <thead>
@@ -328,7 +329,7 @@ function Usuarios(){
                     </tr>
                 </thead>
                 <tbody>
-                    {usuarios.map((usuario)=>(
+                    {usuarios.map((usuario) => (
                         <tr key={usuario.id}>
                             <td>{usuario.id}</td>
                             <td>{usuario.name.firstname}</td>
@@ -337,40 +338,40 @@ function Usuarios(){
                             <td>{usuario.phone}</td>
                             <td>{usuario.address.street}, {usuario.address.city}</td>
                             <td>
-                                <button 
+                                <button
                                     onClick={() => handleEditar(usuario)}
                                     title="Editar"
                                 >
-                                    <img src={editarIcon} alt="Editar" style={{width: '20px', height: '20px'}} />
+                                    <img src={editarIcon} alt="Editar" style={{ width: '20px', height: '20px' }} />
                                 </button>
                             </td>
                             <td>
-                                <button 
+                                <button
                                     onClick={() => handleEliminar(usuario.id)}
                                     title="Eliminar"
                                 >
-                                    <img src={eliminarIcon} alt="Eliminar" style={{width: '20px', height: '20px'}} />
+                                    <img src={eliminarIcon} alt="Eliminar" style={{ width: '20px', height: '20px' }} />
                                 </button>
                             </td>
                         </tr>
                     ))}
                 </tbody>
             </table>
-           
+
         </div>
     );
-    
+
 }
 
 
-function Carrito(){
+function Carrito() {
     const [ordenes, setOrdenes] = useState([]);
     const [loading, setLoading] = useState(true);
 
-   
+
     const handleRemove = (ordenId, productId) => {
         console.log(`Quitar producto ${productId} del pedido ${ordenId}`);
-        
+
     };
 
     useEffect(() => {
@@ -391,18 +392,18 @@ function Carrito(){
         return <p>Cargando Pedidos...</p>
     }
 
-    return(
+    return (
         <div className="carrito-container">
             <h2>Carrito de Compras</h2>
 
             <div className="carrito-grid">
-                
+
                 {ordenes.map((orden) => (
                     <div key={orden.id} className='orden-card'>
                         <h3>Pedido #{orden.id}</h3>
                         <p>Usuario: {orden.userId}</p>
                         <p>Fecha: {new Date(orden.date).toLocaleDateString()}</p>
-                        
+
                         <h4>Productos:</h4>
                         <ul className="productos-list">
                             {orden.products.map((producto) => (
@@ -421,29 +422,115 @@ function Carrito(){
                     </div>
                 ))}
             </div>
-            <RegistrarCarrito/>
+            <RegistrarCarrito />
         </div>
     );
-    
+
 }
 
 
-function ContenedorCards({ vista }){
-    
-    const vistas = {
-        'Inicio': <Inicio/>,
-        'AcercaDe': <AcercaDe/>,
-        'Productos': <Productos/>, 
-        'Galeria': <Galeria/>,
-        'Sucursales': <Sucursales/>,
-        'Contacto': <Contacto/>,
-        'Usuarios': <Usuarios/>,
-        'Carrito': <Carrito/>         
+const Login = ({ chVista }) => {
+
+    const { login } = useAuth();
+
+    const [usuario, setUsuario] = useState("");
+    const [password, setPassword] = useState("");
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        const credenciales = { username: usuario, password };
+
+        try {
+
+            const respuesta = await api.post('/auth/IniciarSesion', credenciales);
+
+            if (respuesta.data.token) {
+                alert('Autenticacion Autorizada ');
+                login(respuesta.data.token);
+                chVista("Usuarios");
+            } else {
+                alert('Credenciales invalidas');
+            }
+
+        } catch (error) {
+            alert('Error: ' + error.message);
+            console.error("Error", error);
+        }
     };
 
-    return(
-        <div className="main-container"> 
-            { vistas[vista] || <Inicio/> }
+    const handleCancel = () => {
+        setUsuario("");
+        setPassword("");
+    };
+
+    return (
+        <div className="login-container">
+
+            <form onSubmit={handleSubmit}>
+
+                <div className="icono">
+
+                </div>
+
+                <h2>LOGIN</h2>
+
+                <label>
+                    Usuario
+                    <input
+                        type="text"
+                        value={usuario}
+                        onChange={(e) => setUsuario(e.target.value)}
+                        placeholder="Ingresa tu usuario"
+                    />
+                </label>
+
+                <label>
+                    Contraseña
+                    <input
+                        type="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        placeholder="Ingresa tu contraseña"
+                    />
+                </label>
+
+                <div className="botones">
+                    <button type="submit">Iniciar</button>
+                    <button type="button" onClick={handleCancel}>Cancelar</button>
+                </div>
+
+                <div className="links">
+                    <a href="#">Recordar contraseña</a>
+                    <a href="#">Registrar</a>
+                </div>
+
+            </form>
+
+        </div>
+    );
+
+
+}
+
+
+function ContenedorCards({ vista }) {
+
+    const vistas = {
+        'Inicio': <Inicio />,
+        'AcercaDe': <AcercaDe />,
+        'Productos': <Productos />,
+        'Galeria': <Galeria />,
+        'Sucursales': <Sucursales />,
+        'Contacto': <Contacto />,
+        'Usuarios': <Usuarios />,
+        'Carrito': <Carrito />,
+        'Login': <Login />
+    };
+
+    return (
+        <div className="main-container">
+            {vistas[vista] || <Inicio />}
         </div>
     )
 }

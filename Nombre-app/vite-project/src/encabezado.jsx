@@ -7,6 +7,7 @@ import iconoTikTok from './assets/redes/tik-tok.png';
 import PropTypes from 'prop-types';
 import Clima from './Clima';
 import './Clima.css';
+import { useAuth } from './authContext';
 
 
 import './encabezado.css';
@@ -30,17 +31,25 @@ function Logo() {
 }
 
 function Menu({cambiarVista}){
+    const { isAuthenticated } = useAuth();
     return(
         <div className='menuDiv'>
             <ul>
-                <li onClick={() => cambiarVista('Inicio')}>Inicio</li>
-                <li onClick={() => cambiarVista('AcercaDe')}>Acerca de</li>
-                <li onClick={() => cambiarVista('Productos')}>Productos</li>
+               <li onClick={() => cambiarVista("Inicio")}>Inicio</li>
+                <li onClick={() => cambiarVista("AcercaDe")}>Acerca de</li>
+                <li onClick={() => cambiarVista("Productos")}>Productos</li>
                 <li onClick={() => cambiarVista("Galeria")}>Galeria</li>
-                <li onClick={() => cambiarVista('Sucursales')}>Sucursales</li>
-                <li onClick={() => cambiarVista('Contacto')}>Contacto</li>
-                <li onClick={() => cambiarVista('Usuarios')}>Usuarios</li>
-                <li onClick={() => cambiarVista('Carrito')}>Carrito</li> 
+                <li onClick={() => cambiarVista("Contacto")}>Contacto</li>
+                <li onClick={() => cambiarVista("Sucursales")}>Sucursales</li>
+                {isAuthenticated ? (
+                    <>
+                    <li onClick={() => cambiarVista("Usuarios")}>Usuarios</li>
+                    <li onClick={() => cambiarVista("Carrito")}>Carrito</li>
+                    </>
+                ):(
+
+                    <li onClick={() => cambiarVista("Login")}>Iniciar Sesión</li>
+                )}
 
             </ul>
         </div>
