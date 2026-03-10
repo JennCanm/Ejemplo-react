@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { useEffect, useState } from "react";
 import './cards.css';
-
+import axios from "axios";
 import api from './Services/api';
 import { useAuth } from './authContext';
 
@@ -435,33 +435,47 @@ const Login = ({ chVista }) => {
 
     const [usuario, setUsuario] = useState("");
     const [password, setPassword] = useState("");
+    const [usuarios, setUsuarios] = useState([]);
+    const [error, setError] = useState("");
+
+    useEffect(() => {
+        const obtenerUsuarios = async () => {
+            try {
+                const respuesta = await api.get('/users');
+                setUsuarios(respuesta.data);
+            } catch (error) {
+                console.error("Error al obtener usuarios:", error);
+            }
+        };
+        obtenerUsuarios();
+    }, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setError("");
 
-        const credenciales = { username: usuario, password };
+        const usuarioEncontrado = usuarios.find(
+            (user) =>
+                (user.username === usuario || user.email === usuario) &&
+                user.password === password
+        );
 
-        try {
-
-            const respuesta = await api.post('/auth/IniciarSesion', credenciales);
-
-            if (respuesta.data.token) {
-                alert('Autenticacion Autorizada ');
-                login(respuesta.data.token);
-                chVista("Usuarios");
-            } else {
-                alert('Credenciales invalidas');
-            }
-
-        } catch (error) {
-            alert('Error: ' + error.message);
-            console.error("Error", error);
+        if (usuarioEncontrado) {
+            const token = btoa(JSON.stringify({ id: usuarioEncontrado.id, username: usuarioEncontrado.username }));
+            alert(`¡Bienvenido ${usuarioEncontrado.name.firstname}!`);
+            login(token);
+            localStorage.setItem('usuario', JSON.stringify(usuarioEncontrado));
+            chVista("Usuarios");
+        } else {
+            setError('Usuario o contraseña incorrectos');
+            alert('Usuario o contraseña incorrectos');
         }
     };
 
     const handleCancel = () => {
         setUsuario("");
         setPassword("");
+        setError("");
     };
 
     return (
@@ -475,6 +489,8 @@ const Login = ({ chVista }) => {
 
                 <h2>LOGIN</h2>
 
+                {error && <div className="error-message">{error}</div>}
+
                 <label>
                     Usuario
                     <input
@@ -482,6 +498,7 @@ const Login = ({ chVista }) => {
                         value={usuario}
                         onChange={(e) => setUsuario(e.target.value)}
                         placeholder="Ingresa tu usuario"
+                        required
                     />
                 </label>
 
@@ -492,6 +509,7 @@ const Login = ({ chVista }) => {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         placeholder="Ingresa tu contraseña"
+                        required
                     />
                 </label>
 
@@ -514,6 +532,65 @@ const Login = ({ chVista }) => {
 }
 
 
+function Categorias() {
+    const [categorias, setCategorias] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const apiCategorias = import.meta.env.VITE_API_CATEGORIES;
+
+    useEffect(() => {
+        const obtenerCategorias = async () => {
+            try {
+                const response = await axios.get(apiCategorias);
+                setCategorias(response.data.categories);
+            } catch (error) {
+                console.error("Error al obtener categorías:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        obtenerCategorias();
+    }, []);
+
+    if (loading) return <p>Cargando categorías...</p>;
+
+    return (
+        <div>
+            <main className='categorias-main'>
+                <header>
+                    <h1>Categorías</h1>
+                </header>
+
+                {categorias.map((categoria) => (
+                    <article key={categoria.idCategory} className='categoria-article'>
+                        <h3>{categoria.strCategory}</h3>
+                        <img src={categoria.strCategoryThumb} alt={categoria.strCategory} className='categoria-img' />
+                        <p>{categoria.strCategoryDescription}</p>
+                    </article>
+                ))}
+            </main>
+        </div>
+    );
+}
+
+function CerrarSesion() {
+    const { logout } = useAuth();
+    const handleLogout = () => {
+        logout();
+        alert("Has cerrado sesión correctamente");
+    }
+    return (
+        <div className="logout-container">
+            <h2>¿Deseas cerrar sesión?</h2>
+            <div className='botones'>
+                <button onClick={handleLogout}>Cerrar Sesión</button>
+            </div>
+        </div>
+    );
+}
+
+
+
 function ContenedorCards({ vista }) {
 
     const vistas = {
@@ -525,7 +602,9 @@ function ContenedorCards({ vista }) {
         'Contacto': <Contacto />,
         'Usuarios': <Usuarios />,
         'Carrito': <Carrito />,
-        'Login': <Login />
+        'Login': <Login />,
+        'Categorias': <Categorias />,
+        'Logout': <CerrarSesion />
     };
 
     return (
